@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Animation Page</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1><span>THIS IS</span><br /><span>DYNAMIC BACKGROUND</span></h1>
+      <h2>Created By TheRevolt</h2>
+    </div>
+
+    <script src="anime.min.js"></script>
+
+    <script>
+      const container = document.querySelector(".container");
+      for (let i = 0; i <= 100; i++) {
+        const blocks = document.createElement("div");
+        blocks.classList.add("block");
+        container.appendChild(blocks);
+      }
+
+      function animateBlocks() {
+        anime({
+          targets: ".block",
+          translateX: function () {
+            return anime.random(-800, 800);
+          },
+          translateY: function () {
+            return anime.random(-800, 800);
+          },
+          scale: function () {
+            return anime.random(1, 5);
+          },
+          rotate: {
+            value: 360,
+            duration: 1800,
+            easing: "easeInOutSine",
+          },
+
+          easing: "linear",
+          delay: anime.stagger(5),
+          complete: animateBlocks,
+        });
+      }
+
+      animateBlocks();
+    </script>
+  </body>
+</html>
